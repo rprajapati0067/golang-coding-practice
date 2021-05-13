@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"html/template"
 	"log"
 	"os"
 	"strconv"
@@ -14,6 +15,8 @@ type Employee struct {
 	City string
 }
 
+const tmpl = `The name is {{.Name}}.`
+
 func main() {
 
 	// f, _ := creatingFile("sample")
@@ -22,9 +25,24 @@ func main() {
 
 	// fmt.Println(bytes, "bytes written successfully")
 	// appending()
-	creatingAndWritingCSVFile()
-	readingCSVFile()
+	//creatingAndWritingCSVFile()
+	//readingCSVFile()
+	val := templateToFile(tmpl, "employee", new(Employee))
+	fmt.Println(val)
 
+}
+
+//output asked in interview
+func templateToFile(templateFileName string, filename string, data interface{}) (err error) {
+
+	if f, err := os.OpenFile(filename, os.O_WRONLY|os.O_TRUNC, 0666); err == nil {
+		defer f.Close()
+
+		if t, err := template.ParseFiles(templateFileName); err == nil {
+			return t.Execute(f, data)
+		}
+	}
+	return
 }
 
 func creatingAndWritingCSVFile() {

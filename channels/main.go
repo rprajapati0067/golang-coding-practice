@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	//	AccessingClosedChannel()
+	AccessingClosedChannel()
 	// NilChannelBlocks()
 }
 
@@ -24,6 +24,8 @@ func AccessingClosedChannel() {
 	ch := make(chan int16)
 
 	close(ch)
+	// Sending to closed channel always panic
+	// ch <- 14
 
 	for i := 0; i < 2; i++ {
 		fmt.Println(<-ch)

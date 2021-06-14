@@ -5,8 +5,22 @@ import (
 	"strings"
 )
 
+func head(n int) {
+
+	if n == 0 {
+		return
+	} else {
+		head(n - 1)
+	}
+	fmt.Printf("%d ", n)
+
+}
+
 func main() {
-	stringFunctions()
+	head(5)
+
+	//permutationOfString("abc", " ")
+	//stringFunctions()
 	//s := sets.NewSet()
 	//s.Add("ravi")
 	//s.Add("ravi")
@@ -17,6 +31,24 @@ func main() {
 
 	//fmt.Println(reverseStringFirstApproach("Hello"))
 	//fmt.Println(reverseWords("How are you?"))
+}
+
+func permutationOfString(str string, ans string) {
+	if len(str) == 0 {
+		fmt.Println(string(ans) + " ")
+		return
+	}
+
+	for i := 0; i < len(str); i++ {
+		ch := string(str[i])
+		a := str[0:i]
+		b := str[i+1:]
+		fmt.Println(a, b)
+
+		ros := str[0:i] + str[i+1:]
+
+		permutationOfString(ros, ans+ch)
+	}
 }
 
 func stringFunctions() {

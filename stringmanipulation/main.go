@@ -36,6 +36,24 @@ func main() {
 	//fmt.Println(reverseWords("How are you?"))
 }
 
+func permutationOfString(str string, ans string) {
+	if len(str) == 0 {
+		fmt.Println(string(ans) + " ")
+		return
+	}
+
+	for i := 0; i < len(str); i++ {
+		ch := string(str[i])
+		a := str[0:i]
+		b := str[i+1:]
+		fmt.Println(a, b)
+
+		ros := str[0:i] + str[i+1:]
+
+		permutationOfString(ros, ans+ch)
+	}
+}
+
 func stringFunctions() {
 	fmt.Println("Good Morning")
 

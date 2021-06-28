@@ -2,16 +2,24 @@ package main
 
 import "fmt"
 
+//		1,       1,            1,
+// [20,30,10,12,14,5,25,26,29,30,15,12]
+// [10,5,2] == [2,5,10]
+
 func main() {
-	var array = new([6]int)
+	res := countGrowth([]int{20, 30, 10, 12, 14, 5, 25, 26, 29, 30, 15, 12})
+	fmt.Println("Result: ", res)
+}
 
-	length := 0
+func countGrowth(metrices []int) int {
+	counter := 0
 
-	for i := 0; i < 3; i++ {
-		array[i] = i * i
-		length++
+	for i := 1; i < len(metrices)-1; i++ {
+		if metrices[i] > metrices[i+1] {
+			if metrices[i] > metrices[i-1] {
+				counter++
+			}
+		}
 	}
-	fmt.Println("Capacity", len(array))
-	fmt.Println("Length", length)
-
+	return counter
 }

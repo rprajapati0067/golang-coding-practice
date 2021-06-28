@@ -5,21 +5,24 @@ import (
 	"strings"
 )
 
-func head(n int) {
-
-	if n == 0 {
+func printPermutation(str string, ans string) {
+	if len(str) == 0 {
+		fmt.Print(ans + " ")
 		return
-	} else {
-		head(n - 1)
 	}
-	fmt.Printf("%d ", n)
+	for i := 0; i < len(str)-1; i++ {
+		s := str[i]
+		ros := string(str[0:i]) + string(str[i+1])
 
+		printPermutation(ros, ans+string(s))
+	}
 }
 
 func main() {
-	head(5)
+	s := "abc"
 
-	//permutationOfString("abc", " ")
+	printPermutation(s, "")
+
 	//stringFunctions()
 	//s := sets.NewSet()
 	//s.Add("ravi")
